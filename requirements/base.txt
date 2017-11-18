@@ -49,3 +49,5 @@ redis>=2.10.6
 
 # Your custom requirements go here
 djangorestframework==3.7.3
+django-slack==5.10.2
+django-cors-headers==2.1.0

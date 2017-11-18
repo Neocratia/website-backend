@@ -53,6 +53,8 @@ THIRD_PARTY_APPS = [
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
     'rest_framework',
+    'django_slack',
+    'corsheaders',
 ]
 
 # Apps specific for this project go here.
@@ -71,6 +73,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -276,3 +279,8 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+CORS_ORIGIN_ALLOW_ALL = True
+SLACK_TOKEN = env('SLACK_TOKEN', default='')
+SLACK_WEBHOOK_URL = env('SLACK_WEBHOOK_URL', default='')
+
+

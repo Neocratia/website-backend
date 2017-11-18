@@ -15,7 +15,7 @@ from rest_framework import routers, serializers, viewsets
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'users', api.UserViewSet)
-router.register(r'actions', api.ActionViewSet, base_name='actions')
+router.register(r'contacts', api.ContactViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

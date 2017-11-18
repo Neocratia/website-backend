@@ -9,7 +9,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ('url', 'name', 'username', 'email', 'is_staff')
 
-class ActionSerializer(serializers.HyperlinkedModelSerializer):
+class ContactSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Contact
-        fields = ('email','interests',)
+        fields = ('id','email','interests',)
