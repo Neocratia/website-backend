@@ -34,7 +34,7 @@ django-allauth==0.34.0
 psycopg2==2.7.3.2
 
 # Unicode slugification
-awesome-slugify==1.6.5
+#awesome-slugify==1.6.5
 
 # Time zones support
 pytz==2017.3
@@ -48,3 +48,6 @@ redis>=2.10.6
 
 
 # Your custom requirements go here
+djangorestframework==3.7.3
+django-slack==5.10.2
+django-cors-headers==2.1.0

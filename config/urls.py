@@ -7,17 +7,24 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from django_base.core.serializers import UserSerializer
+from django_base.core import api
+from django_base.users.models import User
+from rest_framework import routers, serializers, viewsets
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'users', api.UserViewSet)
+router.register(r'contacts', api.ContactViewSet)
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
-    url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+    url(r'^', include(router.urls)),
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
 
     # User management
-    url(r'^users/', include('django_base.users.urls', namespace='users')),
-    url(r'^accounts/', include('allauth.urls')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     # Your stuff: custom urls includes go here
 

@@ -19,7 +19,7 @@ APPS_DIR = ROOT_DIR.path('django_base')
 env = environ.Env()
 
 # .env file, should load only in development environment
-READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=False)
+READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=True)
 
 if READ_DOT_ENV_FILE:
     # Operating System Environment variables have precedence over variables defined in the .env file,
@@ -52,6 +52,9 @@ THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'rest_framework',
+    'django_slack',
+    'corsheaders',
 ]
 
 # Apps specific for this project go here.
@@ -59,6 +62,7 @@ LOCAL_APPS = [
     # custom users app
     'django_base.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'django_base.core',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -69,6 +73,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -274,3 +279,8 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+CORS_ORIGIN_ALLOW_ALL = True
+SLACK_TOKEN = env('SLACK_TOKEN', default='')
+SLACK_WEBHOOK_URL = env('SLACK_WEBHOOK_URL', default='')
+
+
