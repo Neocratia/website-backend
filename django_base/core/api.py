@@ -1,6 +1,6 @@
 from django_base.users.models import User
-from rest_framework import status, viewsets
-from .serializers import UserSerializer, ContactSerializer
+from rest_framework import status, viewsets, mixins
+from .serializers import ContactSerializer
 from .models import Contact
 from rest_framework.response import Response
 from django_slack import slack_message
@@ -8,12 +8,8 @@ from django.conf import settings
 import json
 import requests
 
-# ViewSets define the view behavior.
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-class ContactViewSet(viewsets.ModelViewSet):
+class ContactViewSet(mixins.CreateModelMixin,
+                     viewsets.GenericViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
     def create(self, request, *args, **kwargs):

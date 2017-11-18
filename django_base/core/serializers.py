@@ -3,12 +3,6 @@ from .models import Contact
 from rest_framework import serializers
 
 
-# Serializers define the API representation.
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ('url', 'name', 'username', 'email', 'is_staff')
-
 class ContactSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Contact

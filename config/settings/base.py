@@ -283,4 +283,10 @@ CORS_ORIGIN_ALLOW_ALL = True
 SLACK_TOKEN = env('SLACK_TOKEN', default='')
 SLACK_WEBHOOK_URL = env('SLACK_WEBHOOK_URL', default='')
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
+
 
